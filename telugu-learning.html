@@ -17,14 +17,10 @@
     --rust: #9b4a1e;
     --gold: #c9882a;
     --gold-light: #e8b84b;
-    --olive: #5c6b2e;
-    --teal-dark: #1e4a4a;
     --ink: #1a0f00;
     --shadow: rgba(61,32,8,0.25);
   }
-
   * { margin:0; padding:0; box-sizing:border-box; }
-
   body {
     background-color: var(--cream);
     background-image:
@@ -35,7 +31,6 @@
     color: var(--ink);
     min-height: 100vh;
   }
-
   body::before {
     content: '';
     position: fixed;
@@ -46,360 +41,94 @@
     box-shadow: inset 0 0 0 6px rgba(201,136,42,0.15), 0 0 0 1px rgba(201,136,42,0.3);
   }
 
-  header {
-    text-align: center;
-    padding: 60px 20px 40px;
-    position: relative;
-  }
-  header::after {
-    content: '';
-    display: block;
-    width: 60%;
-    margin: 20px auto 0;
-    height: 2px;
-    background: linear-gradient(to right, transparent, var(--gold), var(--rust), var(--gold), transparent);
-  }
+  header { text-align: center; padding: 55px 20px 35px; }
+  header::after { content: ''; display: block; width: 60%; margin: 18px auto 0; height: 2px; background: linear-gradient(to right, transparent, var(--gold), var(--rust), var(--gold), transparent); }
+  .header-ornament { font-size: 1.8rem; color: var(--gold); letter-spacing: 18px; display: block; margin-bottom: 6px; opacity: 0.7; }
+  h1 { font-family: 'Cinzel Decorative', serif; font-size: clamp(1.4rem, 4.5vw, 2.8rem); color: var(--deep-brown); text-shadow: 2px 2px 0 var(--aged-paper), 4px 4px 8px var(--shadow); line-height: 1.2; letter-spacing: 2px; }
+  .telugu-title { font-family: 'Noto Sans Telugu'; font-size: clamp(1.3rem, 3.5vw, 2.2rem); color: var(--mid-brown); display: block; margin-top: 8px; font-weight: 700; }
+  .subtitle { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1rem; color: var(--rust); margin-top: 8px; letter-spacing: 3px; }
 
-  .header-ornament {
-    font-size: 2rem;
-    color: var(--gold);
-    letter-spacing: 20px;
-    display: block;
-    margin-bottom: 8px;
-    opacity: 0.7;
-  }
+  nav { display: flex; justify-content: center; gap: 10px; padding: 20px 16px; flex-wrap: wrap; }
+  .tab-btn { font-family: 'Playfair Display', serif; font-size: 0.9rem; padding: 9px 20px; background: var(--parchment); border: 2px solid var(--gold); color: var(--deep-brown); border-radius: 2px; cursor: pointer; transition: all 0.3s; font-weight: 700; letter-spacing: 1px; box-shadow: 3px 3px 0 var(--aged-paper); text-align: center; }
+  .tab-btn .te { font-family: 'Noto Sans Telugu'; font-size: 0.85rem; display: block; }
+  .tab-btn.active, .tab-btn:hover { background: var(--mid-brown); color: var(--cream); box-shadow: 3px 3px 0 var(--deep-brown); }
 
-  h1 {
-    font-family: 'Cinzel Decorative', serif;
-    font-size: clamp(1.6rem, 5vw, 3rem);
-    color: var(--deep-brown);
-    text-shadow: 2px 2px 0 var(--aged-paper), 4px 4px 8px var(--shadow);
-    line-height: 1.2;
-    letter-spacing: 2px;
-  }
+  .section { display: none; padding: 20px 36px 60px; max-width: 1200px; margin: 0 auto; }
+  .section.active { display: block; animation: fadeIn 0.4s ease; }
+  @keyframes fadeIn { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:none; } }
 
-  .subtitle {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-size: 1.1rem;
-    color: var(--rust);
-    margin-top: 10px;
-    letter-spacing: 3px;
-  }
+  .section-title { font-family: 'Cinzel Decorative', serif; font-size: 1.4rem; color: var(--deep-brown); text-align: center; margin-bottom: 6px; letter-spacing: 2px; }
+  .section-title-te { font-family: 'Noto Sans Telugu'; font-size: 1.7rem; color: var(--rust); text-align: center; display: block; margin-bottom: 26px; }
+  .scroll-hint { text-align: center; color: var(--aged-paper); font-size: 0.78rem; font-family: 'Playfair Display', serif; font-style: italic; padding-bottom: 14px; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:.4} 50%{opacity:.9} }
 
-  .telugu-title {
-    font-family: 'Noto Sans Telugu', sans-serif;
-    font-size: clamp(1.4rem, 4vw, 2.4rem);
-    color: var(--mid-brown);
-    display: block;
-    margin-top: 8px;
-    font-weight: 700;
-  }
-
-  nav {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    padding: 20px;
-    flex-wrap: wrap;
-  }
-
-  .tab-btn {
-    font-family: 'Playfair Display', serif;
-    font-size: 1rem;
-    padding: 10px 28px;
-    background: var(--parchment);
-    border: 2px solid var(--gold);
-    color: var(--deep-brown);
-    border-radius: 2px;
-    cursor: pointer;
-    transition: all 0.3s;
-    position: relative;
-    font-weight: 700;
-    letter-spacing: 1px;
-    box-shadow: 3px 3px 0 var(--aged-paper);
-  }
-  .tab-btn.active, .tab-btn:hover {
-    background: var(--mid-brown);
-    color: var(--cream);
-    box-shadow: 3px 3px 0 var(--deep-brown);
-  }
-  .tab-btn .te { font-family: 'Noto Sans Telugu'; font-size: 0.9rem; display:block; }
-
-  .section { display: none; padding: 20px 40px 60px; max-width: 1200px; margin: 0 auto; }
-  .section.active { display: block; animation: fadeIn 0.5s ease; }
-  @keyframes fadeIn { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:none; } }
-
-  .section-title {
-    font-family: 'Cinzel Decorative', serif;
-    font-size: 1.5rem;
-    color: var(--deep-brown);
-    text-align: center;
-    margin-bottom: 8px;
-    letter-spacing: 2px;
-  }
-  .section-title-te {
-    font-family: 'Noto Sans Telugu', sans-serif;
-    font-size: 1.8rem;
-    color: var(--rust);
-    text-align: center;
-    display: block;
-    margin-bottom: 30px;
-  }
-
-  .letter-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
-    gap: 14px;
-    margin-bottom: 40px;
-  }
-
-  .letter-card {
-    background: var(--warm-white);
-    border: 2px solid var(--aged-paper);
-    border-radius: 4px;
-    padding: 14px 8px;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.25s cubic-bezier(0.34,1.56,0.64,1);
-    position: relative;
-    box-shadow: 2px 2px 0 var(--parchment), 4px 4px 0 rgba(61,32,8,0.08);
-  }
-  .letter-card::before {
-    content: '';
-    position: absolute;
-    inset: 3px;
-    border: 1px dashed rgba(201,136,42,0.3);
-    border-radius: 2px;
-    pointer-events: none;
-  }
-  .letter-card:hover {
-    transform: translateY(-5px) scale(1.06);
-    border-color: var(--gold);
-    box-shadow: 2px 2px 0 var(--parchment), 6px 10px 20px var(--shadow);
-    background: #fffbf2;
-    z-index: 2;
-  }
-  .letter-card.playing {
-    background: var(--mid-brown);
-    border-color: var(--gold);
-    transform: scale(1.1);
-  }
+  /* Letter Cards */
+  .letter-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 12px; margin-bottom: 30px; }
+  .letter-card { background: var(--warm-white); border: 2px solid var(--aged-paper); border-radius: 4px; padding: 12px 6px 10px; text-align: center; cursor: pointer; transition: all 0.25s cubic-bezier(0.34,1.56,0.64,1); position: relative; box-shadow: 2px 2px 0 var(--parchment); }
+  .letter-card::before { content: ''; position: absolute; inset: 3px; border: 1px dashed rgba(201,136,42,0.25); border-radius: 2px; pointer-events: none; }
+  .letter-card:hover { transform: translateY(-5px) scale(1.05); border-color: var(--gold); box-shadow: 2px 2px 0 var(--parchment), 4px 8px 18px var(--shadow); z-index: 2; }
+  .letter-card.playing { background: var(--mid-brown); border-color: var(--gold); transform: scale(1.08); }
   .letter-card.playing .letter-main { color: var(--gold-light); }
-  .letter-card.playing .letter-roman { color: var(--parchment); }
-  .letter-card.playing .sound-wave { opacity:1; }
+  .letter-card.playing .letter-roman, .letter-card.playing .letter-word, .letter-card.playing .letter-word-en { color: var(--parchment); }
+  .letter-card.playing .sound-wave { opacity: 1; }
+  .letter-main { font-family: 'Noto Sans Telugu'; font-size: 2rem; color: var(--deep-brown); display: block; line-height: 1.2; font-weight: 700; }
+  .letter-roman { font-family: 'Playfair Display', serif; font-size: 0.7rem; color: var(--rust); font-style: italic; margin-top: 3px; display: block; }
+  .letter-word { font-family: 'Noto Sans Telugu'; font-size: 0.78rem; color: var(--mid-brown); margin-top: 5px; display: block; font-weight: 700; border-top: 1px dashed var(--aged-paper); padding-top: 5px; }
+  .letter-word-en { font-family: 'Playfair Display', serif; font-size: 0.65rem; color: var(--rust); font-style: italic; display: block; margin-top: 1px; }
+  .sound-wave { font-size: 0.6rem; color: var(--gold); opacity: 0; transition: opacity 0.3s; margin-top: 2px; letter-spacing: 1px; }
 
-  .letter-main {
-    font-family: 'Noto Sans Telugu', sans-serif;
-    font-size: 2.2rem;
-    color: var(--deep-brown);
-    display: block;
-    line-height: 1.2;
-    font-weight: 700;
-  }
-  .letter-roman {
-    font-family: 'Playfair Display', serif;
-    font-size: 0.75rem;
-    color: var(--rust);
-    font-style: italic;
-    margin-top: 4px;
-    display: block;
-  }
-  .sound-wave {
-    font-size: 0.65rem;
-    color: var(--gold);
-    opacity: 0;
-    transition: opacity 0.3s;
-    margin-top: 2px;
-    letter-spacing: 1px;
-  }
+  @keyframes ripple { 0%{transform:scale(1);opacity:.8} 100%{transform:scale(2.5);opacity:0} }
+  .ripple-ring { position: absolute; inset: 0; border-radius: 4px; border: 2px solid var(--gold-light); animation: ripple 0.6s ease-out forwards; pointer-events: none; }
 
-  .words-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 20px;
-    margin-top: 20px;
-  }
-
-  .word-card {
-    background: var(--warm-white);
-    border: 2px solid var(--aged-paper);
-    border-radius: 4px;
-    padding: 20px;
-    cursor: pointer;
-    transition: all 0.3s;
-    position: relative;
-    box-shadow: 3px 3px 0 var(--parchment);
-    text-align: center;
-  }
-  .word-card::after {
-    content: attr(data-letter);
-    position: absolute;
-    top: 6px; right: 10px;
-    font-family: 'Noto Sans Telugu';
-    font-size: 1.1rem;
-    color: var(--gold);
-    opacity: 0.5;
-  }
-  .word-card:hover {
-    transform: translateY(-4px);
-    border-color: var(--gold);
-    box-shadow: 3px 3px 0 var(--aged-paper), 0 12px 24px var(--shadow);
-  }
+  /* Words */
+  .letter-filter { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 22px; justify-content: center; }
+  .filter-btn { font-family: 'Noto Sans Telugu'; font-size: 0.95rem; padding: 5px 14px; background: var(--parchment); border: 1px solid var(--aged-paper); color: var(--deep-brown); cursor: pointer; border-radius: 2px; transition: all 0.2s; font-weight: 700; }
+  .filter-btn:hover, .filter-btn.active { background: var(--mid-brown); color: var(--cream); border-color: var(--mid-brown); }
+  .words-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 18px; }
+  .word-card { background: var(--warm-white); border: 2px solid var(--aged-paper); border-radius: 4px; padding: 18px 14px; cursor: pointer; transition: all 0.3s; position: relative; box-shadow: 3px 3px 0 var(--parchment); text-align: center; }
+  .word-card:hover { transform: translateY(-4px); border-color: var(--gold); box-shadow: 3px 3px 0 var(--aged-paper), 0 10px 22px var(--shadow); }
   .word-card.playing { background: var(--mid-brown); }
   .word-card.playing .word-te { color: var(--gold-light); }
   .word-card.playing .word-en, .word-card.playing .word-meaning { color: var(--parchment); }
+  .word-emoji { font-size: 2.2rem; display: block; margin-bottom: 8px; }
+  .word-te { font-family: 'Noto Sans Telugu'; font-size: 1.5rem; color: var(--deep-brown); font-weight: 700; display: block; }
+  .word-en { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.82rem; color: var(--rust); margin-top: 4px; display: block; }
+  .word-meaning { font-size: 0.75rem; color: var(--mid-brown); margin-top: 5px; display: block; font-family: 'Playfair Display', serif; }
 
-  .word-emoji { font-size: 2.5rem; display: block; margin-bottom: 10px; }
-  .word-te {
-    font-family: 'Noto Sans Telugu';
-    font-size: 1.6rem;
-    color: var(--deep-brown);
-    font-weight: 700;
-    display: block;
-  }
-  .word-en {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-size: 0.85rem;
-    color: var(--rust);
-    margin-top: 4px;
-    display: block;
-  }
-  .word-meaning {
-    font-size: 0.8rem;
-    color: var(--mid-brown);
-    margin-top: 6px;
-    display: block;
-    font-family: 'Playfair Display', serif;
-  }
+  /* Guninthalu */
+  .gunintham-selector { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 28px; }
+  .gunintham-btn { font-family: 'Noto Sans Telugu'; font-size: 1.2rem; padding: 8px 18px; background: var(--parchment); border: 2px solid var(--aged-paper); color: var(--deep-brown); cursor: pointer; border-radius: 3px; transition: all 0.2s; font-weight: 700; box-shadow: 2px 2px 0 var(--aged-paper); }
+  .gunintham-btn:hover, .gunintham-btn.active { background: var(--mid-brown); color: var(--cream); border-color: var(--mid-brown); box-shadow: 2px 2px 0 var(--deep-brown); }
+  .gunintham-display { background: var(--warm-white); border: 2px solid var(--aged-paper); border-radius: 6px; padding: 24px; box-shadow: 4px 4px 0 var(--parchment); }
+  .gunintham-title { font-family: 'Noto Sans Telugu'; font-size: 1.6rem; color: var(--rust); text-align: center; font-weight: 700; margin-bottom: 20px; }
+  .gunintham-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); gap: 10px; }
+  .gunintham-card { background: var(--cream); border: 2px solid var(--aged-paper); border-radius: 4px; padding: 12px 6px; text-align: center; cursor: pointer; transition: all 0.25s cubic-bezier(0.34,1.56,0.64,1); position: relative; }
+  .gunintham-card:hover { transform: translateY(-4px) scale(1.05); border-color: var(--gold); box-shadow: 0 8px 16px var(--shadow); z-index: 2; }
+  .gunintham-card.playing { background: var(--mid-brown); border-color: var(--gold); transform: scale(1.1); }
+  .gunintham-card.playing .g-form { color: var(--gold-light); }
+  .gunintham-card.playing .g-vowel { color: var(--parchment); }
+  .g-form { font-family: 'Noto Sans Telugu'; font-size: 1.8rem; color: var(--deep-brown); font-weight: 700; display: block; line-height: 1.2; }
+  .g-vowel { font-family: 'Playfair Display', serif; font-size: 0.68rem; color: var(--rust); font-style: italic; margin-top: 4px; display: block; }
 
-  .letter-filter {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 24px;
-    justify-content: center;
-  }
-  .filter-btn {
-    font-family: 'Noto Sans Telugu';
-    font-size: 1rem;
-    padding: 6px 16px;
-    background: var(--parchment);
-    border: 1px solid var(--aged-paper);
-    color: var(--deep-brown);
-    cursor: pointer;
-    border-radius: 2px;
-    transition: all 0.2s;
-    font-weight: 700;
-  }
-  .filter-btn:hover, .filter-btn.active {
-    background: var(--mid-brown);
-    color: var(--cream);
-    border-color: var(--mid-brown);
-  }
+  /* Colors */
+  .colors-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(155px, 1fr)); gap: 18px; }
+  .color-card { border-radius: 6px; padding: 18px 14px; text-align: center; cursor: pointer; transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1); border: 3px solid transparent; box-shadow: 3px 3px 0 rgba(0,0,0,0.12); position: relative; overflow: hidden; }
+  .color-card::before { content: ''; position: absolute; inset: 4px; border: 1px dashed rgba(255,255,255,0.35); border-radius: 3px; pointer-events: none; }
+  .color-card:hover { transform: translateY(-6px) rotate(-1deg); box-shadow: 6px 8px 0 rgba(0,0,0,0.15); border-color: var(--gold); }
+  .color-card.playing { transform: scale(1.1); }
+  .color-swatch { width: 55px; height: 55px; border-radius: 50%; margin: 0 auto 10px; border: 3px solid rgba(255,255,255,0.6); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+  .color-te { font-family: 'Noto Sans Telugu'; font-size: 1.3rem; font-weight: 700; display: block; }
+  .color-en { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.82rem; margin-top: 4px; display: block; opacity: 0.85; }
 
-  .colors-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 20px;
-  }
-
-  .color-card {
-    border-radius: 6px;
-    padding: 20px 16px;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1);
-    border: 3px solid transparent;
-    box-shadow: 3px 3px 0 rgba(0,0,0,0.12);
-    position: relative;
-    overflow: hidden;
-  }
-  .color-card::before {
-    content: '';
-    position: absolute;
-    inset: 4px;
-    border: 1px dashed rgba(255,255,255,0.4);
-    border-radius: 3px;
-    pointer-events: none;
-  }
-  .color-card:hover {
-    transform: translateY(-6px) rotate(-1deg);
-    box-shadow: 6px 8px 0 rgba(0,0,0,0.15);
-    border-color: var(--gold);
-  }
-  .color-card.playing { transform: scale(1.12); }
-
-  .color-swatch {
-    width: 60px; height: 60px;
-    border-radius: 50%;
-    margin: 0 auto 12px;
-    border: 3px solid rgba(255,255,255,0.6);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-  }
-  .color-te {
-    font-family: 'Noto Sans Telugu';
-    font-size: 1.4rem;
-    font-weight: 700;
-    display: block;
-  }
-  .color-en {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-size: 0.85rem;
-    margin-top: 4px;
-    display: block;
-    opacity: 0.85;
-  }
-
-  .ornamental-divider {
-    text-align: center;
-    color: var(--gold);
-    font-size: 1.2rem;
-    margin: 30px 0;
-    letter-spacing: 12px;
-    opacity: 0.6;
-  }
-
-  @keyframes ripple {
-    0% { transform: scale(1); opacity: 0.8; }
-    100% { transform: scale(2.5); opacity: 0; }
-  }
-  .ripple-ring {
-    position: absolute;
-    inset: 0;
-    border-radius: 4px;
-    border: 2px solid var(--gold-light);
-    animation: ripple 0.6s ease-out forwards;
-    pointer-events: none;
-  }
-
-  footer {
-    text-align: center;
-    padding: 30px;
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    color: var(--mid-brown);
-    font-size: 0.9rem;
-    opacity: 0.7;
-  }
-
-  .scroll-hint {
-    text-align: center;
-    color: var(--aged-paper);
-    font-size: 0.8rem;
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    padding-bottom: 10px;
-    animation: pulse 2s infinite;
-  }
-  @keyframes pulse { 0%,100%{opacity:.4} 50%{opacity:.9} }
+  .ornamental-divider { text-align: center; color: var(--gold); font-size: 1.1rem; margin: 24px 0; letter-spacing: 10px; opacity: 0.6; }
+  footer { text-align: center; padding: 28px; font-family: 'Playfair Display', serif; font-style: italic; color: var(--mid-brown); font-size: 0.88rem; opacity: 0.7; }
 
   @media (max-width: 600px) {
-    .section { padding: 20px 18px 50px; }
-    .letter-grid { grid-template-columns: repeat(auto-fill, minmax(70px, 1fr)); gap: 10px; }
-    .letter-main { font-size: 1.8rem; }
+    .section { padding: 16px 14px 50px; }
+    .letter-grid { grid-template-columns: repeat(auto-fill, minmax(85px, 1fr)); gap: 8px; }
+    .letter-main { font-size: 1.7rem; }
+    nav { gap: 7px; }
+    .tab-btn { padding: 7px 14px; font-size: 0.8rem; }
   }
 </style>
 </head>
@@ -413,10 +142,11 @@
 </header>
 
 <nav>
-  <button class="tab-btn active" onclick="showTab('vowels')">Vowels <span class="te">అచ్చులు</span></button>
-  <button class="tab-btn" onclick="showTab('consonants')">Consonants <span class="te">హల్లులు</span></button>
-  <button class="tab-btn" onclick="showTab('words')">Words <span class="te">పదాలు</span></button>
-  <button class="tab-btn" onclick="showTab('colors')">Colors <span class="te">రంగులు</span></button>
+  <button class="tab-btn active" onclick="showTab('vowels')">Vowels<span class="te">అచ్చులు</span></button>
+  <button class="tab-btn" onclick="showTab('consonants')">Consonants<span class="te">హల్లులు</span></button>
+  <button class="tab-btn" onclick="showTab('guninthalu')">Guninthalu<span class="te">గుణింతాలు</span></button>
+  <button class="tab-btn" onclick="showTab('words')">Words<span class="te">పదాలు</span></button>
+  <button class="tab-btn" onclick="showTab('colors')">Colors<span class="te">రంగులు</span></button>
 </nav>
 
 <section id="vowels" class="section active">
@@ -431,6 +161,14 @@
   <span class="section-title-te">హల్లులు</span>
   <p class="scroll-hint">♪ Click any letter to hear its sound ♪</p>
   <div class="letter-grid" id="consonant-grid"></div>
+</section>
+
+<section id="guninthalu" class="section">
+  <h2 class="section-title">Guninthalu</h2>
+  <span class="section-title-te">గుణింతాలు</span>
+  <p class="scroll-hint">♪ Select a consonant to see all its vowel forms · Click any form to hear it ♪</p>
+  <div class="gunintham-selector" id="gunintham-selector"></div>
+  <div class="gunintham-display" id="gunintham-display"></div>
 </section>
 
 <section id="words" class="section">
@@ -454,68 +192,139 @@
 
 <script>
 const vowels = [
-  { ch:'అ', rom:'a' }, { ch:'ఆ', rom:'aa' }, { ch:'ఇ', rom:'i' },
-  { ch:'ఈ', rom:'ee' }, { ch:'ఉ', rom:'u' }, { ch:'ఊ', rom:'oo' },
-  { ch:'ఎ', rom:'e' }, { ch:'ఏ', rom:'ae' }, { ch:'ఐ', rom:'ai' },
-  { ch:'ఒ', rom:'o' }, { ch:'ఓ', rom:'oa' }, { ch:'ఔ', rom:'au' },
-  { ch:'అం', rom:'am' }, { ch:'అః', rom:'aha' },
+  { ch:'అ', rom:'a',    word:'అమ్మ',     wordEn:'Mother' },
+  { ch:'ఆ', rom:'aa',   word:'ఆవు',      wordEn:'Cow' },
+  { ch:'ఇ', rom:'i',    word:'ఇల్లు',    wordEn:'House' },
+  { ch:'ఈ', rom:'ee',   word:'ఈత',       wordEn:'Swimming' },
+  { ch:'ఉ', rom:'u',    word:'ఉప్పు',    wordEn:'Salt' },
+  { ch:'ఊ', rom:'oo',   word:'ఊరు',      wordEn:'Village' },
+  { ch:'ఋ', rom:'ru',   word:'ఋషి',      wordEn:'Sage' },
+  { ch:'ఎ', rom:'e',    word:'ఎద్దు',    wordEn:'Bull' },
+  { ch:'ఏ', rom:'ae',   word:'ఏనుగు',    wordEn:'Elephant' },
+  { ch:'ఐ', rom:'ai',   word:'ఐదు',      wordEn:'Five' },
+  { ch:'ఒ', rom:'o',    word:'ఒంట',      wordEn:'Body' },
+  { ch:'ఓ', rom:'oa',   word:'ఓడ',       wordEn:'Ship' },
+  { ch:'ఔ', rom:'au',   word:'ఔషధం',     wordEn:'Medicine' },
+  { ch:'అం',rom:'am',   word:'అంబరం',    wordEn:'Sky' },
+  { ch:'అః',rom:'aha',  word:'అః',       wordEn:'Visarga' },
 ];
 
 const consonants = [
-  { ch:'క', rom:'ka' }, { ch:'ఖ', rom:'kha' }, { ch:'గ', rom:'ga' }, { ch:'ఘ', rom:'gha' }, { ch:'ఙ', rom:'nga' },
-  { ch:'చ', rom:'cha' }, { ch:'ఛ', rom:'chha' }, { ch:'జ', rom:'ja' }, { ch:'ఝ', rom:'jha' }, { ch:'ఞ', rom:'nya' },
-  { ch:'ట', rom:'ta' }, { ch:'ఠ', rom:'tha' }, { ch:'డ', rom:'da' }, { ch:'ఢ', rom:'dha' }, { ch:'ణ', rom:'na' },
-  { ch:'త', rom:'ta' }, { ch:'థ', rom:'tha' }, { ch:'ద', rom:'da' }, { ch:'ధ', rom:'dha' }, { ch:'న', rom:'na' },
-  { ch:'ప', rom:'pa' }, { ch:'ఫ', rom:'pha' }, { ch:'బ', rom:'ba' }, { ch:'భ', rom:'bha' }, { ch:'మ', rom:'ma' },
-  { ch:'య', rom:'ya' }, { ch:'ర', rom:'ra' }, { ch:'ల', rom:'la' }, { ch:'వ', rom:'va' }, { ch:'శ', rom:'sha' },
-  { ch:'ష', rom:'sha' }, { ch:'స', rom:'sa' }, { ch:'హ', rom:'ha' }, { ch:'ళ', rom:'lla' }, { ch:'క్ష', rom:'ksha' }, { ch:'ఱ', rom:'rra' },
+  { ch:'క', rom:'ka',   word:'కాకి',     wordEn:'Crow' },
+  { ch:'ఖ', rom:'kha',  word:'ఖరీదు',    wordEn:'Cost' },
+  { ch:'గ', rom:'ga',   word:'గుర్రం',   wordEn:'Horse' },
+  { ch:'ఘ', rom:'gha',  word:'ఘంట',      wordEn:'Bell' },
+  { ch:'ఙ', rom:'nga',  word:'ఙ',        wordEn:'(nga)' },
+  { ch:'చ', rom:'cha',  word:'చేప',      wordEn:'Fish' },
+  { ch:'ఛ', rom:'chha', word:'ఛత్రం',    wordEn:'Umbrella' },
+  { ch:'జ', rom:'ja',   word:'జింక',     wordEn:'Deer' },
+  { ch:'ఝ', rom:'jha',  word:'ఝరి',      wordEn:'Waterfall' },
+  { ch:'ఞ', rom:'nya',  word:'ఞ',        wordEn:'(nya)' },
+  { ch:'ట', rom:'ta',   word:'టమాట',     wordEn:'Tomato' },
+  { ch:'ఠ', rom:'tha',  word:'ఠీవి',     wordEn:'Grace' },
+  { ch:'డ', rom:'da',   word:'డబ్బు',    wordEn:'Money' },
+  { ch:'ఢ', rom:'dha',  word:'ఢంకా',     wordEn:'Drum' },
+  { ch:'ణ', rom:'na',   word:'ణ',        wordEn:'(na)' },
+  { ch:'త', rom:'ta',   word:'తమ్ముడు',  wordEn:'Brother' },
+  { ch:'థ', rom:'tha',  word:'థాలీ',     wordEn:'Plate' },
+  { ch:'ద', rom:'da',   word:'దారి',     wordEn:'Road' },
+  { ch:'ధ', rom:'dha',  word:'ధనం',      wordEn:'Wealth' },
+  { ch:'న', rom:'na',   word:'నది',      wordEn:'River' },
+  { ch:'ప', rom:'pa',   word:'పిల్లి',   wordEn:'Cat' },
+  { ch:'ఫ', rom:'pha',  word:'ఫలం',      wordEn:'Fruit' },
+  { ch:'బ', rom:'ba',   word:'బాతు',     wordEn:'Duck' },
+  { ch:'భ', rom:'bha',  word:'భూమి',     wordEn:'Earth' },
+  { ch:'మ', rom:'ma',   word:'మేక',      wordEn:'Goat' },
+  { ch:'య', rom:'ya',   word:'యానం',     wordEn:'Vehicle' },
+  { ch:'ర', rom:'ra',   word:'రాయి',     wordEn:'Stone' },
+  { ch:'ల', rom:'la',   word:'లేడి',     wordEn:'Doe' },
+  { ch:'వ', rom:'va',   word:'వంక',      wordEn:'Curve' },
+  { ch:'శ', rom:'sha',  word:'శంఖం',     wordEn:'Conch' },
+  { ch:'ష', rom:'sha',  word:'షాపు',     wordEn:'Shop' },
+  { ch:'స', rom:'sa',   word:'సూర్యుడు', wordEn:'Sun' },
+  { ch:'హ', rom:'ha',   word:'హంస',      wordEn:'Swan' },
+  { ch:'ళ', rom:'lla',  word:'ళ',        wordEn:'(lla)' },
+  { ch:'క్ష',rom:'ksha',word:'క్షణం',    wordEn:'Moment' },
+  { ch:'ఱ', rom:'rra',  word:'ఱాయి',     wordEn:'Stone' },
+];
+
+const vowelMatras = [
+  { matra:'',  vowel:'అ',  rom:'a'   },
+  { matra:'ా', vowel:'ఆ',  rom:'aa'  },
+  { matra:'ి', vowel:'ఇ',  rom:'i'   },
+  { matra:'ీ', vowel:'ఈ',  rom:'ee'  },
+  { matra:'ు', vowel:'ఉ',  rom:'u'   },
+  { matra:'ూ', vowel:'ఊ',  rom:'oo'  },
+  { matra:'ృ', vowel:'ఋ',  rom:'ru'  },
+  { matra:'ె', vowel:'ఎ',  rom:'e'   },
+  { matra:'ే', vowel:'ఏ',  rom:'ae'  },
+  { matra:'ై', vowel:'ఐ',  rom:'ai'  },
+  { matra:'ొ', vowel:'ఒ',  rom:'o'   },
+  { matra:'ో', vowel:'ఓ',  rom:'oa'  },
+  { matra:'ౌ', vowel:'ఔ',  rom:'au'  },
+  { matra:'ం', vowel:'అం', rom:'am'  },
+  { matra:'ః', vowel:'అః', rom:'aha' },
 ];
 
 const words = [
-  { te:'అమ్మ', en:'amma', meaning:'Mother', emoji:'👩', letter:'అ' },
-  { te:'అడవి', en:'adavi', meaning:'Forest', emoji:'🌳', letter:'అ' },
-  { te:'అరటి', en:'arati', meaning:'Banana', emoji:'🍌', letter:'అ' },
-  { te:'ఆవు', en:'aavu', meaning:'Cow', emoji:'🐄', letter:'ఆ' },
-  { te:'ఆకాశం', en:'aakaasham', meaning:'Sky', emoji:'☁️', letter:'ఆ' },
-  { te:'ఆపిల్', en:'aapil', meaning:'Apple', emoji:'🍎', letter:'ఆ' },
-  { te:'ఇల్లు', en:'illu', meaning:'House', emoji:'🏠', letter:'ఇ' },
-  { te:'ఇనుము', en:'inumu', meaning:'Iron', emoji:'⚙️', letter:'ఇ' },
-  { te:'ఈకె', en:'eeke', meaning:'Feather', emoji:'🪶', letter:'ఈ' },
-  { te:'ఉప్పు', en:'uppu', meaning:'Salt', emoji:'🧂', letter:'ఉ' },
-  { te:'ఉడుత', en:'uduta', meaning:'Squirrel', emoji:'🐿️', letter:'ఉ' },
-  { te:'ఊరు', en:'ooru', meaning:'Village', emoji:'🏘️', letter:'ఊ' },
-  { te:'కాకి', en:'kaaki', meaning:'Crow', emoji:'🐦‍⬛', letter:'క' },
-  { te:'కోతి', en:'kothi', meaning:'Monkey', emoji:'🐒', letter:'క' },
-  { te:'కుక్క', en:'kukka', meaning:'Dog', emoji:'🐕', letter:'క' },
-  { te:'గుర్రం', en:'gurram', meaning:'Horse', emoji:'🐴', letter:'గ' },
-  { te:'చంద్రుడు', en:'chandrudu', meaning:'Moon', emoji:'🌕', letter:'చ' },
-  { te:'చేప', en:'chepa', meaning:'Fish', emoji:'🐟', letter:'చ' },
-  { te:'జింక', en:'jinka', meaning:'Deer', emoji:'🦌', letter:'జ' },
-  { te:'తోట', en:'thota', meaning:'Garden', emoji:'🌻', letter:'త' },
-  { te:'నది', en:'nadi', meaning:'River', emoji:'🌊', letter:'న' },
-  { te:'పండు', en:'pandu', meaning:'Fruit', emoji:'🍊', letter:'ప' },
-  { te:'పిల్లి', en:'pilli', meaning:'Cat', emoji:'🐱', letter:'ప' },
-  { te:'పువ్వు', en:'puvvu', meaning:'Flower', emoji:'🌸', letter:'ప' },
-  { te:'మంచి', en:'manchi', meaning:'Good', emoji:'👍', letter:'మ' },
-  { te:'మేక', en:'meka', meaning:'Goat', emoji:'🐐', letter:'మ' },
-  { te:'రాయి', en:'raayi', meaning:'Stone', emoji:'🪨', letter:'ర' },
-  { te:'సూర్యుడు', en:'sooryudu', meaning:'Sun', emoji:'☀️', letter:'స' },
-  { te:'హంస', en:'hamsa', meaning:'Swan', emoji:'🦢', letter:'హ' },
+  { te:'అమ్మ',     en:'amma',      meaning:'Mother',      emoji:'👩',  letter:'అ' },
+  { te:'అడవి',     en:'adavi',     meaning:'Forest',      emoji:'🌳',  letter:'అ' },
+  { te:'అరటి',     en:'arati',     meaning:'Banana',      emoji:'🍌',  letter:'అ' },
+  { te:'ఆవు',      en:'aavu',      meaning:'Cow',         emoji:'🐄',  letter:'ఆ' },
+  { te:'ఆకాశం',    en:'aakaasham', meaning:'Sky',         emoji:'☁️',  letter:'ఆ' },
+  { te:'ఆపిల్',    en:'aapil',     meaning:'Apple',       emoji:'🍎',  letter:'ఆ' },
+  { te:'ఇల్లు',    en:'illu',      meaning:'House',       emoji:'🏠',  letter:'ఇ' },
+  { te:'ఇనుము',    en:'inumu',     meaning:'Iron',        emoji:'⚙️',  letter:'ఇ' },
+  { te:'ఈత',       en:'eeta',      meaning:'Swimming',    emoji:'🏊',  letter:'ఈ' },
+  { te:'ఈగ',       en:'eega',      meaning:'Fly',         emoji:'🪰',  letter:'ఈ' },
+  { te:'ఉప్పు',    en:'uppu',      meaning:'Salt',        emoji:'🧂',  letter:'ఉ' },
+  { te:'ఉడుత',     en:'uduta',     meaning:'Squirrel',    emoji:'🐿️', letter:'ఉ' },
+  { te:'ఊరు',      en:'ooru',      meaning:'Village',     emoji:'🏘️', letter:'ఊ' },
+  { te:'ఊహ',       en:'ooha',      meaning:'Imagination', emoji:'💭',  letter:'ఊ' },
+  { te:'ఎద్దు',    en:'eddu',      meaning:'Bull',        emoji:'🐂',  letter:'ఎ' },
+  { te:'ఏనుగు',    en:'eenugu',    meaning:'Elephant',    emoji:'🐘',  letter:'ఏ' },
+  { te:'ఐదు',      en:'aidu',      meaning:'Five',        emoji:'5️⃣', letter:'ఐ' },
+  { te:'ఓడ',       en:'oda',       meaning:'Ship',        emoji:'🚢',  letter:'ఓ' },
+  { te:'కాకి',     en:'kaaki',     meaning:'Crow',        emoji:'🐦',  letter:'క' },
+  { te:'కోతి',     en:'kothi',     meaning:'Monkey',      emoji:'🐒',  letter:'క' },
+  { te:'కుక్క',    en:'kukka',     meaning:'Dog',         emoji:'🐕',  letter:'క' },
+  { te:'గుర్రం',   en:'gurram',    meaning:'Horse',       emoji:'🐴',  letter:'గ' },
+  { te:'గువ్వ',    en:'guvva',     meaning:'Pigeon',      emoji:'🕊️', letter:'గ' },
+  { te:'చంద్రుడు', en:'chandrudu', meaning:'Moon',        emoji:'🌕',  letter:'చ' },
+  { te:'చేప',      en:'chepa',     meaning:'Fish',        emoji:'🐟',  letter:'చ' },
+  { te:'జింక',     en:'jinka',     meaning:'Deer',        emoji:'🦌',  letter:'జ' },
+  { te:'తమ్ముడు',  en:'tammadu',   meaning:'Brother',     emoji:'👦',  letter:'త' },
+  { te:'తోట',      en:'thota',     meaning:'Garden',      emoji:'🌻',  letter:'త' },
+  { te:'దారి',     en:'daari',     meaning:'Road',        emoji:'🛣️', letter:'ద' },
+  { te:'నది',      en:'nadi',      meaning:'River',       emoji:'🌊',  letter:'న' },
+  { te:'నక్క',     en:'nakka',     meaning:'Fox',         emoji:'🦊',  letter:'న' },
+  { te:'పండు',     en:'pandu',     meaning:'Fruit',       emoji:'🍊',  letter:'ప' },
+  { te:'పిల్లి',   en:'pilli',     meaning:'Cat',         emoji:'🐱',  letter:'ప' },
+  { te:'పువ్వు',   en:'puvvu',     meaning:'Flower',      emoji:'🌸',  letter:'ప' },
+  { te:'బాతు',     en:'baatu',     meaning:'Duck',        emoji:'🦆',  letter:'బ' },
+  { te:'భూమి',     en:'bhoomi',    meaning:'Earth',       emoji:'🌍',  letter:'భ' },
+  { te:'మేక',      en:'meka',      meaning:'Goat',        emoji:'🐐',  letter:'మ' },
+  { te:'మొక్క',    en:'mokka',     meaning:'Plant',       emoji:'🌱',  letter:'మ' },
+  { te:'రాయి',     en:'raayi',     meaning:'Stone',       emoji:'🪨',  letter:'ర' },
+  { te:'లేడి',     en:'ledi',      meaning:'Doe',         emoji:'🦌',  letter:'ల' },
+  { te:'శంఖం',     en:'shankham',  meaning:'Conch',       emoji:'🐚',  letter:'శ' },
+  { te:'సూర్యుడు', en:'sooryudu',  meaning:'Sun',         emoji:'☀️',  letter:'స' },
+  { te:'హంస',      en:'hamsa',     meaning:'Swan',        emoji:'🦢',  letter:'హ' },
 ];
 
 const colors = [
-  { te:'ఎరుపు', en:'Red', hex:'#c0392b', textColor:'#fff' },
-  { te:'నీలం', en:'Blue', hex:'#2471a3', textColor:'#fff' },
-  { te:'పచ్చ', en:'Green', hex:'#1e8449', textColor:'#fff' },
-  { te:'పసుపు', en:'Yellow', hex:'#d4ac0d', textColor:'#3d2008' },
+  { te:'ఎరుపు',  en:'Red',    hex:'#c0392b', textColor:'#fff' },
+  { te:'నీలం',   en:'Blue',   hex:'#2471a3', textColor:'#fff' },
+  { te:'పచ్చ',   en:'Green',  hex:'#1e8449', textColor:'#fff' },
+  { te:'పసుపు',  en:'Yellow', hex:'#d4ac0d', textColor:'#3d2008' },
   { te:'నారింజ', en:'Orange', hex:'#d35400', textColor:'#fff' },
-  { te:'ఊదా', en:'Purple', hex:'#7d3c98', textColor:'#fff' },
-  { te:'గులాబీ', en:'Pink', hex:'#e91e8c', textColor:'#fff' },
-  { te:'తెలుపు', en:'White', hex:'#f0ede0', textColor:'#3d2008' },
-  { te:'నలుపు', en:'Black', hex:'#1a1a1a', textColor:'#fff' },
-  { te:'గోధుమ', en:'Brown', hex:'#6b3a1f', textColor:'#fff' },
-  { te:'బంగారు', en:'Gold', hex:'#c9882a', textColor:'#fff' },
-  { te:'వెండి', en:'Silver', hex:'#95a5a6', textColor:'#fff' },
+  { te:'ఊదా',    en:'Purple', hex:'#7d3c98', textColor:'#fff' },
+  { te:'గులాబీ', en:'Pink',   hex:'#e91e8c', textColor:'#fff' },
+  { te:'తెలుపు', en:'White',  hex:'#f0ede0', textColor:'#3d2008' },
+  { te:'నలుపు',  en:'Black',  hex:'#1a1a1a', textColor:'#fff' },
+  { te:'గోధుమ',  en:'Brown',  hex:'#6b3a1f', textColor:'#fff' },
+  { te:'బంగారు', en:'Gold',   hex:'#c9882a', textColor:'#fff' },
+  { te:'వెండి',  en:'Silver', hex:'#95a5a6', textColor:'#fff' },
 ];
 
 // ── SPEECH ──
@@ -535,45 +344,84 @@ function speak(text) {
   }
   const utt = new SpeechSynthesisUtterance(text);
   if (chosenVoice) utt.voice = chosenVoice;
-  utt.lang = 'te-IN';
-  utt.rate = 0.85;
-  utt.pitch = 1.1;
+  utt.lang = 'te-IN'; utt.rate = 0.85; utt.pitch = 1.1;
   window.speechSynthesis.speak(utt);
 }
-
 if (window.speechSynthesis) {
   window.speechSynthesis.getVoices();
   window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
 }
 
-// ── RENDER ──
+// ── HELPERS ──
+function playCard(card, text) {
+  speak(text);
+  card.classList.add('playing');
+  const ring = document.createElement('div');
+  ring.className = 'ripple-ring';
+  card.appendChild(ring);
+  setTimeout(() => { card.classList.remove('playing'); ring.remove(); }, 700);
+}
+
 function createLetterCard(item, container) {
   const card = document.createElement('div');
   card.className = 'letter-card';
   card.innerHTML = `
     <span class="letter-main">${item.ch}</span>
     <span class="letter-roman">${item.rom}</span>
+    <span class="letter-word">${item.word}</span>
+    <span class="letter-word-en">${item.wordEn}</span>
     <span class="sound-wave">♪ ♫ ♪</span>
   `;
-  card.addEventListener('click', () => {
-    speak(item.ch);
-    card.classList.add('playing');
-    const ring = document.createElement('div');
-    ring.className = 'ripple-ring';
-    card.appendChild(ring);
-    setTimeout(() => { card.classList.remove('playing'); ring.remove(); }, 700);
-  });
+  card.addEventListener('click', () => playCard(card, item.ch));
   container.appendChild(card);
 }
 
+// ── RENDER ──
 function renderVowels() {
-  const grid = document.getElementById('vowel-grid');
-  vowels.forEach(v => createLetterCard(v, grid));
+  const g = document.getElementById('vowel-grid');
+  vowels.forEach(v => createLetterCard(v, g));
 }
 
 function renderConsonants() {
-  const grid = document.getElementById('consonant-grid');
-  consonants.forEach(c => createLetterCard(c, grid));
+  const g = document.getElementById('consonant-grid');
+  consonants.forEach(c => createLetterCard(c, g));
+}
+
+function buildGunintham(consonant) {
+  const display = document.getElementById('gunintham-display');
+  display.innerHTML = '';
+  const title = document.createElement('div');
+  title.className = 'gunintham-title';
+  title.textContent = `${consonant.ch} గుణింతం`;
+  display.appendChild(title);
+  const grid = document.createElement('div');
+  grid.className = 'gunintham-grid';
+  vowelMatras.forEach(m => {
+    let form = m.matra === '' ? consonant.ch : consonant.ch + m.matra;
+    const card = document.createElement('div');
+    card.className = 'gunintham-card';
+    card.innerHTML = `<span class="g-form">${form}</span><span class="g-vowel">${m.vowel} · ${m.rom}</span>`;
+    card.addEventListener('click', () => playCard(card, form));
+    grid.appendChild(card);
+  });
+  display.appendChild(grid);
+}
+
+function renderGuninthalu() {
+  const selector = document.getElementById('gunintham-selector');
+  const mainConsonants = consonants.filter(c => !['ఙ','ఞ','ణ','ళ','ఱ'].includes(c.ch));
+  mainConsonants.forEach((c, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'gunintham-btn' + (i === 0 ? ' active' : '');
+    btn.textContent = c.ch;
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.gunintham-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      buildGunintham(c);
+    });
+    selector.appendChild(btn);
+  });
+  buildGunintham(mainConsonants[0]);
 }
 
 function renderWords(filter = 'all') {
@@ -623,7 +471,7 @@ function renderColors() {
     card.style.background = c.hex;
     card.style.color = c.textColor;
     card.innerHTML = `
-      <div class="color-swatch" style="background:${c.hex}; filter:brightness(1.3); border-color:rgba(255,255,255,0.5)"></div>
+      <div class="color-swatch" style="background:${c.hex}; filter:brightness(1.3)"></div>
       <span class="color-te">${c.te}</span>
       <span class="color-en">${c.en}</span>
     `;
@@ -647,6 +495,7 @@ function showTab(id) {
 
 renderVowels();
 renderConsonants();
+renderGuninthalu();
 renderWordFilter();
 renderWords();
 renderColors();
